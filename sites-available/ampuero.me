@@ -1,0 +1,29 @@
+server {
+    listen      443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name www.ampuero.me ampuero.me; 
+    server_name_in_redirect off;
+
+    # SSL configuration
+    include snippets/ssl-ampuero.me.conf;
+    include snippets/ssl-params.conf;    
+    root  /home/jampueroc/mainWebsite/public;
+    index index.html;                                                                  
+                                                                    
+ #location / {                                                       
+ #    proxy_pass http://localhost:8080;                                 
+ #    proxy_redirect http:// https://;
+ #    proxy_set_header Host $host;                                   
+ #    proxy_set_header X-Real-IP $remote_addr;                       
+ #    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;   
+ #}                                                                  
+                                                                    
+
+
+    # caching of files 
+    location ~* \.(ico|pdf|flv)$ {
+            expires 1y;
+    }
+
+}
+
